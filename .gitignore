@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+lib
+main
+styleguide
+npm-debug.log
+yarn-debug.log
+yarn-error.log

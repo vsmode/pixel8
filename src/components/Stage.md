@@ -1,0 +1,35 @@
+```js
+<div>
+  <Stage
+    background="#000"
+  />
+  <Stage
+    background="#fff"
+    gridSize={8}
+    gridColor="#f5f5f5"
+  />
+  <Stage
+    background="#fff"
+    gridType="dotted"
+    gridSize={8}
+    gridColor="#ccc"
+  />
+  <Stage
+    width={16}
+    height={16}
+    scale={8}
+    background="pink"
+    gridSize={1}
+    gridColor="#fff"
+  />
+  <Stage
+    width={16}
+    height={16}
+    scale={8}
+    background="#8959a8"
+    gridType="dotted"
+    gridSize={1}
+    gridColor="#fff"
+  />
+</div>
+```

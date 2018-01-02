@@ -1,0 +1,40 @@
+{
+  "name": "pixel8",
+  "version": "0.0.5",
+  "main": "main/index.js",
+  "module": "lib/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-reconciler": "^0.6.0",
+    "recompose": "^0.26.0",
+    "styled-components": "^2.2.3"
+  },
+  "scripts": {
+    "build": "npm -s run build-module && npm -s run build-main",
+    "build-main": "NODE_ENV=production npx babel src --out-dir main --ignore spec.js,test.js --plugins=transform-es2015-modules-commonjs --source-maps inline",
+    "build-module": "NODE_ENV=production npx babel src --out-dir lib --ignore spec.js,test.js --source-maps inline",
+    "prebuild": "rm -rf lib && rm -rf main",
+    "prepare": "npm -s run build",
+    "test": "npx jest",
+    "start": "npm -s run styleguide",
+    "styleguide": "npx styleguidist server",
+    "styleguide:build": "npx styleguidist build"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.0",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-styleguidist": "^6.0.33",
+    "react-test-renderer": "^16.1.0",
+    "webpack": "^3.8.1",
+    "webpack-blocks": "^1.0.0-rc.2"
+  }
+}

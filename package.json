@@ -1,9 +1,13 @@
 {
   "name": "pixel8",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "main/index.js",
   "module": "lib/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vsmode/pixel8.git"
+  },
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.1.0",

@@ -10,20 +10,25 @@ export const drawRect = ({
   fill,
   radius,
 }) => {
-  const { width } = imageData
+  const { width, height } = imageData
   // skip transparent fills
   if (fill === 0) return
   // calculate coordinates to skip due to border-radius
   // secret bonus: also useful for drawing circles
   const skips = calcBorderRadiusSkips(w, h, radius)
   for (let row = 0; row < h; row++) {
+    const _y = row + y
+    if (_y < 0 || _y >= height) continue // off-stage
     for (let col = 0; col < w; col++) {
+      const _x = col + x
+      if (_x < 0 || _x >= width) continue // off-stage
       // skip border-radius coords
       if (skips[row]) {
         const s = skips[row]
         if (col > s[0] || col < s[1]) continue
       }
-      const idx = (y + row) * width + (x + col)
+      // pixel index
+      const idx = _y * width + _x
       // write visible pixels to uint32 array
       pixels[idx] = fill
       // write id to hitmap

@@ -8,9 +8,9 @@ const { render, unmount } = createRenderer(createElement)
 const StageBackground = styled.div`
   pointer-events: none;
   position: absolute;
-  top: 1px;
+  top: 0;
   bottom: 0;
-  left: 1px;
+  left: 0;
   right: 0;
   background-color: ${({ bgColor }) => bgColor};
   ${({ gridType, gridColor, gridSize }) => {

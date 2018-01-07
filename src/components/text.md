@@ -1,5 +1,5 @@
 ```js
-initialState = { yOffset: 0 };
+initialState = { yOffset: 0, clientY: 0 };
 const w = 256;
 const h = 256;
 const lineHeight = 10;
@@ -8,19 +8,34 @@ const lines = pixel8.utils.stringToLines(text.split(/[ ]/), pixel8.fonts.micro.w
 const MAX_YOFFSET = 0;
 const MIN_YOFFSET = (lines.length - (1 + Math.floor((h - 10) / lineHeight))) * -lineHeight;
 const scrollY = 1 + Math.round((h - 17) * (state.yOffset / MIN_YOFFSET));
+let prevClientY = 0;
 <Stage
   width={w}
   height={h}
   scale={2}
   fps={60}
   background="#000"
+  // mouswheel / trackpad scrolling
   onWheel={e => {
-    // handle scrolling
     let yOffset = state.yOffset - e.deltaY
     if (MAX_YOFFSET < yOffset) yOffset = MAX_YOFFSET
     else if (MIN_YOFFSET > yOffset) yOffset = MIN_YOFFSET
     else e.preventDefault()
     setState({ yOffset })
+  }}
+  // touch device scrolling
+  onTouchStart={e => {
+    const clientY = Math.round(e.touches[0].clientY)
+    setState({ clientY })
+  }}
+  onTouchMove={e => {
+    const clientY = Math.round(e.changedTouches[0].clientY)
+    const deltaY = -1 * (clientY - state.clientY)
+    let yOffset = state.yOffset - deltaY
+    if (MAX_YOFFSET < yOffset) yOffset = MAX_YOFFSET
+    else if (MIN_YOFFSET > yOffset) yOffset = MIN_YOFFSET
+    else e.preventDefault()
+    setState({ yOffset, clientY })
   }}>
   {/* draw text at yOffset */}
   <text

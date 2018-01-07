@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import AutoScale from 'react-auto-scale'
 import createRenderer from '../renderer'
 import createElement from '../createElement'
 const { render, unmount } = createRenderer(createElement)
@@ -193,44 +194,58 @@ export default class Stage extends Component {
     return (
       <div
         style={{
-          position: 'relative',
+          width: '100%',
+          maxWidth: width * scale,
           display: 'inline-block',
-          width: width * scale,
-          height: height * scale,
         }}
       >
-        <StageBackground
-          bgColor={background}
-          gridType={gridType}
-          gridColor={gridColor}
-          gridSize={scale * gridSize}
-        />
-        <canvas
-          ref={ref => (this.canvas = ref)}
-          width={width}
-          height={height}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            imageRendering: 'pixelated',
-            transform: `scale(${scale})`,
-            transformOrigin: '0 0',
-            outline: 'none',
-          }}
-          onClick={e => {
-            e.persist()
-            onClick(e)
-            const rect = e.target.getBoundingClientRect()
-            const x = Math.floor((e.clientX - rect.left) / scale)
-            const y = Math.floor((e.clientY - rect.top) / scale)
-            const child = this.getChild(x, y)
-            if (child && child.props.onClick) {
-              child.props.onClick(e)
-            }
-          }}
-          {...props}
-        />
+        <AutoScale
+          maxWidth={width * scale}
+          maxHeight={height * scale}
+          maxScale={1}
+        >
+          <div
+            style={{
+              position: 'relative',
+              display: 'inline-block',
+              width: width * scale,
+              height: height * scale,
+            }}
+          >
+            <StageBackground
+              bgColor={background}
+              gridType={gridType}
+              gridColor={gridColor}
+              gridSize={scale * gridSize}
+            />
+            <canvas
+              ref={ref => (this.canvas = ref)}
+              width={width}
+              height={height}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                imageRendering: 'pixelated',
+                transform: `scale(${scale})`,
+                transformOrigin: '0 0',
+                outline: 'none',
+              }}
+              onClick={e => {
+                e.persist()
+                onClick(e)
+                const rect = e.target.getBoundingClientRect()
+                const x = Math.floor((e.clientX - rect.left) / scale)
+                const y = Math.floor((e.clientY - rect.top) / scale)
+                const child = this.getChild(x, y)
+                if (child && child.props.onClick) {
+                  child.props.onClick(e)
+                }
+              }}
+              {...props}
+            />
+          </div>
+        </AutoScale>
       </div>
     )
   }

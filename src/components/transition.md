@@ -37,7 +37,8 @@ initialState = { x: 30, y: 30, width: 4, height: 4, borderRadius: 0, delay: 0 };
       }}
       style={{
         display: 'block',
-        width: 512,
+        width: '100%',
+        maxWidth: 512,
         height: 108,
       }}
     />

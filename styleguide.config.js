@@ -2,8 +2,8 @@ const { createConfig, babel } = require('webpack-blocks')
 module.exports = {
   title: 'Pixel8',
   showSidebar: true,
-  showCode: true,
-  showUsage: true,
+  showCode: false,
+  showUsage: false,
   theme: {
     sidebarWidth: 300,
     color: {

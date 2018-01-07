@@ -4,13 +4,13 @@ export default createElement => {
   /** Reconciler */
   const PixelRenderer = Reconciler({
     /**
-   * Host context getters
-   * */
+     * Host context getters
+     */
     getRootHostContext: root => root,
     getChildHostContext: root => root,
     /**
-   * Component instance creation
-   * */
+     * Component instance creation
+     */
     createInstance: function createInstance(type, props, root, host, fiber) {
       return createElement(type, props, root, null)
     },
@@ -18,8 +18,8 @@ export default createElement => {
       parent.appendChild(child)
     },
     /**
-   * Manage prop updates
-   * */
+     * Manage prop updates
+     */
     finalizeInitialChildren: (host, type, props) => {
       return false
     },
@@ -29,8 +29,8 @@ export default createElement => {
       return { ...props, ...nextProps }
     },
     /**
-   * Text handling
-   * */
+     * Text handling
+     */
     createTextInstance: (text, root, fiber) => {
       throw new Error('Raw text children are not supported by <PixelCanvas>')
     },
@@ -42,15 +42,15 @@ export default createElement => {
     },
     shouldSetTextContent: () => false,
     /**
-   * Other stuff
-   * */
+     * Other stuff
+     */
     getPublicInstance: inst => inst,
     shouldDeprioritizeSubtree: (type, props) => false,
     now: () => {},
     useSyncScheduling: true,
     /**
-   * Mutations
-   * */
+     * Mutations
+     */
     mutation: {
       appendChild: (parent, child) => {
         parent.appendChild(child)
@@ -71,7 +71,7 @@ export default createElement => {
         parent.removeChild(child)
       },
       commitUpdate: (inst, payload, type, props, nextProps) => {
-        inst.props = inst.mapProps(inst.props, payload)
+        inst.setProps(payload)
       },
       commitMount: (inst, payload, type, props, nextProps) => {},
       commitTextUpdate: (inst, text, nextText) => {

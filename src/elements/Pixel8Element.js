@@ -15,6 +15,9 @@ export default class Pixel8Element {
     this.root = root
     this.init()
   }
+  setProps(nextProps) {
+    this.props = this.mapProps(this.props, nextProps)
+  }
   setState(nextState) {
     this.state = { ...this.state, ...nextState }
   }
@@ -33,8 +36,8 @@ export default class Pixel8Element {
     // relative positioning
     return {
       ...childProps,
-      x: childProps.x + this.props.x,
-      y: childProps.y + this.props.y,
+      x: childProps.x + this.computedProps.x,
+      y: childProps.y + this.computedProps.y,
     }
   }
   appendChild(child) {

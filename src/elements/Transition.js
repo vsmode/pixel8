@@ -1,6 +1,11 @@
 import Pixel8Element from './Pixel8Element'
 import easing from '../easing'
 
+const once = f => {
+  let n = 0
+  return x => (n > 0 ? x : (n++, f(x)))
+}
+
 export default class Transition extends Pixel8Element {
   static defaultProps = {
     frames: 8,
@@ -25,16 +30,21 @@ export default class Transition extends Pixel8Element {
       wait: this.props.delay,
       next: new WeakMap(),
       prev: new WeakMap(),
+      childStates: new WeakMap(),
     })
   }
   draw(f = x => x) {
-    const { next } = this.state
+    const { next, tick } = this.state
+    this.update()
     // only draw children
     for (const child of this.children) {
-      child.draw(x => {
-        const props = next.get(child) || x
-        return f(props)
-      })
+      child.draw(
+        // using `once` means mapping only applies to immediate children
+        once(x => {
+          const props = next.get(child) || x
+          return f(props)
+        }),
+      )
     }
   }
   update() {
@@ -64,7 +74,7 @@ export default class Transition extends Pixel8Element {
         const { ease, frames, use } = this.props
         const f = 'function' === typeof ease ? ease : easing[ease]
         // linear progress
-        const t0 = state.tick / (frames - 1)
+        const t0 = state.tick / frames
         // eased progress
         const t1 = f(t0)
         // calculate transitions
@@ -72,8 +82,6 @@ export default class Transition extends Pixel8Element {
         // set next props
         state.next.set(child, nextProps)
       }
-      // update child
-      child.update()
     }
   }
 }

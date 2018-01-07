@@ -167,7 +167,6 @@ export default class Stage extends Component {
     // update pixels
     for (const child of this.children) {
       child.draw()
-      child.update()
     }
     // draw pixels to the canvas
     this.ctx.putImageData(this.imageData, 0, 0)

@@ -10,9 +10,8 @@ export default class PixelBuffer extends Pixel8Element {
     data: new ArrayBuffer(),
   }
   draw(f = x => x) {
-    const { type, x, y, width, height, data, map, name, palette } = f(
-      this.props,
-    )
+    this.computedProps = f(this.props)
+    const { type, x, y, width, height, data, map, name, palette } = this.computedProps
     const { pixels, hitmap, imageData } = this.root
     drawUint32({
       id: this.id,

@@ -11,7 +11,8 @@ export default class Rectangle extends Pixel8Element {
     borderRadius: 0,
   }
   draw(f = x => x) {
-    const { x, y, width, height, fill, borderRadius } = f(this.props)
+    this.computedProps = f(this.props)
+    const { x, y, width, height, fill, borderRadius } = this.computedProps
     const { pixels, hitmap, imageData } = this.root
     drawRect({
       id: this.id,

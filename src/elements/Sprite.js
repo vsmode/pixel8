@@ -10,7 +10,8 @@ export default class Sprite extends Pixel8Element {
     index: 0,
   }
   draw(f = x => x) {
-    const { x, y, width, height, index, map, source } = f(this.props)
+    this.computedProps = f(this.props)
+    const { x, y, width, height, index, map, source } = this.computedProps
     const { pixels, hitmap, imageData } = this.root
     const size = width * height
     const data = new Uint32Array(

@@ -14,9 +14,8 @@ export default class Text extends Pixel8Element {
     yOffset: 0,
   }
   draw(f = x => x) {
-    const { x, y, text, lineHeight, font, fill, width, height, yOffset } = f(
-      this.props,
-    )
+    this.computedProps = f(this.props)
+    const { x, y, text, lineHeight, font, fill, width, height, yOffset } = this.computedProps
     const data = stringToBytes(text, {
       lineHeight: lineHeight || font.height,
       font:

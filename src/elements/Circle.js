@@ -9,7 +9,8 @@ export default class Circle extends Pixel8Element {
     fill: 0,
   }
   draw(f = x => x) {
-    const { x, y, radius, fill } = f(this.props)
+    this.computedProps = f(this.props)
+    const { x, y, radius, fill } = this.computedProps
     const { pixels, hitmap, imageData } = this.root
     drawRect({
       id: this.id,

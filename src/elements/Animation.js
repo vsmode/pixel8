@@ -23,6 +23,7 @@ export default class Animation extends Pixel8Element {
     for (const child of this.children) {
       child.draw(x => this.mapChildProps(f(x)))
     }
+    this.update()
   }
   update() {
     const { delay, frames, alternate, loops } = this.props
@@ -56,8 +57,6 @@ export default class Animation extends Pixel8Element {
         }
       }
     }
-    // update children
-    for (const child of this.children) child.update()
   }
   mapChildProps(childProps) {
     const { ease, foo, frames, use } = this.props

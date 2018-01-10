@@ -11,6 +11,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
+    "react-auto-scale": "^1.0.4",
     "react-dom": "^16.1.0",
     "react-reconciler": "^0.6.0",
     "recompose": "^0.26.0",
@@ -36,7 +37,6 @@
     "jest": "^21.2.1",
     "raf": "^3.4.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-auto-scale": "^1.0.4",
     "react-styleguidist": "^6.0.33",
     "react-test-renderer": "^16.1.0",
     "webpack": "^3.8.1",

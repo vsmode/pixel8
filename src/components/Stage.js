@@ -113,10 +113,16 @@ export default class Stage extends Component {
   childMap = new Map()
   appendChild(child) {
     this.children.add(child)
-    this.childMap.set(child.id, child)
+    this.registerChild(child)
   }
   removeChild(child) {
     this.children.delete(child)
+    this.unregisterChild(child)
+  }
+  registerChild(child) {
+    this.childMap.set(child.id, child)
+  }
+  unregisterChild(child) {
     this.childMap.delete(child.id)
   }
   init() {

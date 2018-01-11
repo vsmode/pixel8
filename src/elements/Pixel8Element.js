@@ -42,8 +42,10 @@ export default class Pixel8Element {
   }
   appendChild(child) {
     this.children.add(child)
+    this.root.registerChild(child)
   }
   removeChild(child) {
     this.children.delete(child)
+    this.root.unregisterChild(child)
   }
 }

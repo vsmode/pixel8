@@ -1,6 +1,6 @@
 {
   "name": "pixel8",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "main/index.js",
   "module": "lib/index.js",
   "license": "MIT",

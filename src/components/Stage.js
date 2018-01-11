@@ -111,18 +111,18 @@ export default class Stage extends Component {
   tick = 0
   children = new Set()
   childMap = new Map()
-  appendChild(child) {
+  appendChild = child => {
     this.children.add(child)
     this.registerChild(child)
   }
-  removeChild(child) {
+  removeChild = child => {
     this.children.delete(child)
     this.unregisterChild(child)
   }
-  registerChild(child) {
+  registerChild = child => {
     this.childMap.set(child.id, child)
   }
-  unregisterChild(child) {
+  unregisterChild = child => {
     this.childMap.delete(child.id)
   }
   init() {

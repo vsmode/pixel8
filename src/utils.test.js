@@ -51,5 +51,9 @@ describe('clickToCoords', () => {
     const { x: x2 , y: y2 } = getCoords(182, 211, 200, 300, 10, 100, 300)
     expect(x2).toBe(9)
     expect(y2).toBe(21)
+
+    const { x: x3 , y: y3 } = getCoords(44, 211, 50, 300, 10, 100, 300)
+    expect(x3).toBe(8)
+    expect(y3).toBe(21)
   })
 })

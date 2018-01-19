@@ -15,6 +15,8 @@ const createRoot = (width, height) => {
   const hitmap = new Uint32Array(new ArrayBuffer(imageData.data.length))
   const children = new Set()
   const childMap = new Map()
+  const registerChild = () => {}
+  const unregisterChild = () => {}
   const appendChild = child => {
     children.add(child)
     childMap.set(child.id, child)
@@ -41,6 +43,8 @@ const createRoot = (width, height) => {
     childMap,
     appendChild,
     removeChild,
+    registerChild,
+    unregisterChild,
     draw,
     getPixel,
     getChild,

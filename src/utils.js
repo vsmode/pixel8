@@ -236,6 +236,16 @@ export const stringToBytes = (
   return bytes
 }
 
+export const clickToCoords = (e, scale, maxWidth, maxHeight) => {
+  const rect = e.target.getBoundingClientRect()
+
+  const scaleX = scale * (rect.width / (maxWidth))
+  const scaleY = scale * (rect.height / (maxHeight))
+  const x = Math.floor((e.clientX - rect.left) / scaleX)
+  const y = Math.floor((e.clientY - rect.top) / scaleY)
+  return { x, y }
+}
+
 export default {
   drawRect,
   drawUint32,
@@ -250,4 +260,5 @@ export default {
   loadImageData,
   stringToLines,
   stringToBytes,
+  clickToCoords,
 }

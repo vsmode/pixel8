@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import AutoScale from 'react-auto-scale'
 import createRenderer from '../renderer'
 import createElement from '../createElement'
+import { clickToCoords } from '../utils'
 const { render, unmount } = createRenderer(createElement)
 
 const StageBackground = styled.div`
@@ -197,25 +198,27 @@ export default class Stage extends Component {
       onClick,
       ...props
     } = this.props
+    const maxWidth = width * scale
+    const maxHeight = height * scale
     return (
       <div
         style={{
           width: '100%',
-          maxWidth: width * scale,
+          maxWidth,
           display: 'inline-block',
         }}
       >
         <AutoScale
-          maxWidth={width * scale}
-          maxHeight={height * scale}
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
           maxScale={1}
         >
           <div
             style={{
               position: 'relative',
               display: 'inline-block',
-              width: width * scale,
-              height: height * scale,
+              width: maxWidth,
+              height: maxHeight,
             }}
           >
             <StageBackground
@@ -240,9 +243,7 @@ export default class Stage extends Component {
               onClick={e => {
                 e.persist()
                 onClick(e)
-                const rect = e.target.getBoundingClientRect()
-                const x = Math.floor((e.clientX - rect.left) / scale)
-                const y = Math.floor((e.clientY - rect.top) / scale)
+                const { x, y } = clickToCoords(e, scale, maxWidth, maxHeight)
                 const child = this.getChild(x, y)
                 if (child && child.props.onClick) {
                   child.props.onClick(e)

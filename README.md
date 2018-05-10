@@ -9,7 +9,7 @@ A collection of low-res primitives for creating art and games with React
 
 [![NPM Version](https://img.shields.io/npm/v/pixel8.svg?style=flat)](https://www.npmjs.org/package/pixel8)
 [![NPM Downloads](https://img.shields.io/npm/dm/pixel8.svg?style=flat)](https://www.npmjs.org/package/pixel8)
-[![Join the chat at https://gitter.im/vsmode/pixel8](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vsmode/pixel8?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Discord](https://img.shields.io/discord/443995389809393666.svg?style=flat)](https://discord.gg/VYeM6ZK)
 
 ## Why?
 
@@ -65,4 +65,4 @@ render(<App />, document.getElementById('root'))
 
 ## Issues? Questions? Contributions?
 
-Feel free to [create an issue](https://github.com/vsmode/pixel8/issues), jump into the [gitter channel](https://gitter.im/vsmode/pixel8), or shoot me a message on [twitter](https://twitter.com/jozanza)
+Feel free to [create an issue](https://github.com/vsmode/pixel8/issues), jump into the [Discord](https://discord.gg/VYeM6ZK), or shoot me a message on [twitter](https://twitter.com/jozanza)
